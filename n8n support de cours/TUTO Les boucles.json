@@ -1,0 +1,202 @@
+{
+  "name": "TUTO Les boucles",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f5c202d6-6d97-4bb7-b647-dc988f92e72c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "524fde9c-085b-4552-a22a-a6626ae441cd",
+              "name": "compteur",
+              "value": 0,
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "de923a40-38f8-4dab-a535-54190c408921",
+      "name": "Compteur"
+    },
+    {
+      "parameters": {
+        "amount": 0.1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "92a2030b-760e-4896-9864-271ee61841c3",
+      "name": "Wait 0,1 second",
+      "webhookId": "725556f9-8cef-490d-8c6b-23a824bda140"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7f72ce6f-89b0-4be2-91eb-2d7c2c076c1e",
+              "name": "compteur",
+              "value": "={{ $json.compteur + 1 }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        624,
+        0
+      ],
+      "id": "00cb0be8-219c-4f2a-bc34-9373b96dfbf0",
+      "name": "Compteur + 1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d980ea56-0caa-47c0-a97e-7dfcb3736624",
+              "leftValue": "={{ $json.compteur }}",
+              "rightValue": 100,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        832,
+        0
+      ],
+      "id": "ca4c8461-3f7b-4d95-9b89-e1579259b8dd",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1088,
+        -96
+      ],
+      "id": "dfd34749-7a57-40bf-901c-9f7f5da366e3",
+      "name": "Le compteur > 100"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Compteur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compteur": {
+      "main": [
+        [
+          {
+            "node": "Wait 0,1 second",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 0,1 second": {
+      "main": [
+        [
+          {
+            "node": "Compteur + 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compteur + 1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Le compteur > 100",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 0,1 second",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "2c19d92b-be73-462b-acda-80a4d174defa",
+  "meta": {
+    "instanceId": "b840345e7c258ae1df4ea5b84e854a9b2e6a0c04f2327019d7943af7bfbdb387"
+  },
+  "id": "UcSVQjDMWM0HVJUQ",
+  "tags": [
+    {
+      "createdAt": "2025-11-06T08:36:08.467Z",
+      "updatedAt": "2025-11-06T08:36:08.467Z",
+      "id": "DqccIqr2iDa9CmvP",
+      "name": "tuto"
+    }
+  ]
+}

@@ -1,0 +1,609 @@
+{
+  "name": "Flux RSS",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "61d2827f-3dff-4ba6-a011-804b3fe2956d",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://www.apple.com/ca/newsroom/rss-feed.rss",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        336,
+        208
+      ],
+      "id": "ddb9317b-462d-4d83-8dee-9cd011fbd9b1",
+      "name": "RSS Read"
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "link",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        1104,
+        112
+      ],
+      "id": "43c1951a-6c38-4942-9884-48a2d3c92218",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "wYr4ILS9mMrfDQ7i",
+          "mode": "list",
+          "cachedResultName": "RSS",
+          "cachedResultUrl": "/projects/ErrHzD1xKMAT2Pca/datatables/wYr4ILS9mMrfDQ7i"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "title": "={{ $json.title }}",
+            "link": "={{ $json.link }}",
+            "content": "={{ $json.content }}",
+            "pubDate": "={{ $json.pubDate }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "link",
+              "displayName": "link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "pubDate",
+              "displayName": "pubDate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        112
+      ],
+      "id": "ce752649-4651-4a6d-8bcc-6c6fcf1c4c5b",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "content": "## Trigger Manuel\nDémarre le workflow\n\nSe lance en cliquant sur un des boutons orange",
+        "height": 464,
+        "width": 256
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "38ea3e8f-8259-4d8a-a7f9-134f3c9e909b",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## RSS Feed\nLit un feed RSS\n\nNécessite une url RSS",
+        "height": 464,
+        "width": 256,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        256,
+        0
+      ],
+      "id": "11ae9751-84de-4642-8277-4620f40aff4c",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Différent Feed RSS\n1. Apple : \nhttps://www.apple.com/ca/newsroom/rss-feed.rss\n2. Apple Développeur : \nhttps://developer.apple.com/news/rss/news.rss\n3. BBC Front Page : \nhttp://newsrss.bbc.co.uk/rss/newsonline_uk_edition/front_page/rss.xml\n4. BBC Business :\nhttps://feeds.bbci.co.uk/news/business/rss.xml?edition=uk\n5. Ouest-france :\nhttps://www.ouest-france.fr/rss/france\n6. Construire son propre Feed RSS :\nhttps://rss.app/fr/rss-feed",
+        "height": 304,
+        "width": 624
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        496
+      ],
+      "id": "239193be-b033-4b2c-b1ea-7a15fba205ee",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Set\nPermet de modifier / manipuler les données\n\nIci on choisit les variables qui nous intéressent",
+        "height": 464,
+        "width": 256,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        512,
+        0
+      ],
+      "id": "2ab644bd-51b2-4ed1-96db-644b6702bbe6",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## If\nNoeud de conditions\n\nPermet de choisir d'exécuter une partie du workflow si certaines conditions sont réunis.\nSinon on exécute l'autre partie.",
+        "height": 464,
+        "width": 256,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        768,
+        0
+      ],
+      "id": "56daefeb-2f2c-4bdd-a60f-4ed453574f54",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "117ffb90-5931-4bcc-bb59-dff477616244",
+              "name": "title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "d5100547-68dd-43e9-94a9-98e46b0d9b81",
+              "name": "link",
+              "value": "={{ $json.link }}",
+              "type": "string"
+            },
+            {
+              "id": "529ff625-327f-42a2-a355-f6ad99c8c506",
+              "name": "pubDate",
+              "value": "={{ $json.pubDate }}",
+              "type": "string"
+            },
+            {
+              "id": "52267f95-8f4d-4772-8105-17fcbbcb5609",
+              "name": "content",
+              "value": "={{ $json.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        592,
+        208
+      ],
+      "id": "d9aacf4d-e03e-4962-b1e7-8205bec0b125",
+      "name": "Garder les données intéressantes"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e4e1761d-dd70-4c73-9082-73834921c180",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "finance",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "44f1cc8e-419f-409e-83d5-c97f98b36e08",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "argent",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "70b7c9b1-9e67-45ce-9ea1-4d5100bc88a8",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "recrute",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "750f04fd-d7a8-4695-9f2a-52792d7e8c38",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "Lecornu",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "8d07087e-27ef-4dcd-83ad-9c73de858bdc",
+              "leftValue": "={{ $json.title }}",
+              "rightValue": "iPad",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        848,
+        208
+      ],
+      "id": "3b67ba82-c62b-4eb9-bc1d-46c7422b553f",
+      "name": "S'il y a ces mots clés"
+    },
+    {
+      "parameters": {
+        "content": "## Remove duplicate\n*Suppression des doublons*\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n*Sinon on ne fait rien :*",
+        "height": 464,
+        "width": 256,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1024,
+        0
+      ],
+      "id": "380b1f37-9a78-4a15-8ab5-d7d14e5c2a77",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1104,
+        304
+      ],
+      "id": "6b63e0f7-965f-40ee-a5f7-0e4e7f0175ca",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "content": "## Table\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCe noeud permet d'intéragir avec le stockage d'information de n8n.\nIci on vient sauvegarder les informations sur notre n8n",
+        "height": 464,
+        "width": 256,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        0
+      ],
+      "id": "2aa2b8eb-5926-48b5-b26f-9c578977ee3c",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "sendTo": "amaury.n8n@gmail.com",
+        "subject": "Flux RSS",
+        "emailType": "text",
+        "message": "={{ $json.output }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2160,
+        112
+      ],
+      "id": "2cbc4805-913d-4195-b66b-7cffa0016222",
+      "name": "Send a message",
+      "webhookId": "361975d9-ac80-49e8-923e-67f28e3d74c4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "TEd6YDzlhkZFotSl",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## GMAIL - Send a message\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote : on a ajouté l'option \"Append n8n Attribution\" qu'on désactive pour éviter d'avoir le texte dans le mail \"This email was sent automatically with n8n https://n8n.io\"",
+        "height": 464,
+        "width": 256,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        0
+      ],
+      "id": "ccf4b728-bf5a-4e33-a897-a791fb09e2bf",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## Agent-IA\nUtilise des modèles gratuit avec Open Router",
+        "height": 464,
+        "width": 288,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1792,
+        0
+      ],
+      "id": "d4d189b1-4293-461c-865b-25cf4ee603db",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Résumé moi les flux RSS suivant. Dis moi lesquels sont les plus importants et pourquoi.\n\n{{ $json.title }}\n\n{{ $json.link }}\n\n{{ $json.pubdate }}\n\n{{ $json.content }}",
+        "options": {
+          "systemMessage": "You are a helpful assistant who send resume of different RSS article, you must speak French."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1824,
+        112
+      ],
+      "id": "c753e495-66c4-435b-880c-cf6843d0273b",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "content": "## Aggregate\nFusionne tout les objets/items/produits en un seul objet",
+        "height": 464,
+        "width": 256,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1536,
+        0
+      ],
+      "id": "8f502f8c-6990-4e29-bb81-a7b9bd50be1f",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "title"
+            },
+            {
+              "fieldToAggregate": "link"
+            },
+            {
+              "fieldToAggregate": "pubdate"
+            },
+            {
+              "fieldToAggregate": "content"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1616,
+        112
+      ],
+      "id": "c92e1d1a-4f3e-4b86-bef5-d7f45afd182d",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        320
+      ],
+      "id": "758c3e8d-17ec-4171-838d-28e751363d19",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "0t2vh73gAFwYcKTJ",
+          "name": "Google Gemini(PaLM) n8n AUDENCIA"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Garder les données intéressantes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Garder les données intéressantes": {
+      "main": [
+        [
+          {
+            "node": "S'il y a ces mots clés",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "S'il y a ces mots clés": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert row": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1a56136e-049d-419f-939d-9b25d3266fc2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cde471444a94e6ae79b36f0bc9b203c84645a39b8e04f76891b014fdcd314ba5"
+  },
+  "id": "2l3hS5yNqnvBUp8R",
+  "tags": []
+}

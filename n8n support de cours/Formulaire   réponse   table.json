@@ -1,0 +1,240 @@
+{
+  "name": "Formulaire + réponse + table",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Premier Workflow\n### Trigger Formulaire\n * Nom\n * Prénom\n * Adresse mail\n * numéro de tel\n * Job\n\n### If\n * Si le job est \"Responsable\"\n * Sinon \n\n### Set Si responsable\n* Créer une réponse de bienvenue pour les responsables\n\n### Set Sinon pas responsable\n* Créer une réponse de bienvenue pour son job \n\n",
+        "height": 464,
+        "width": 704
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        -208
+      ],
+      "id": "4e5c9ba2-0c34-41b4-9344-14bae21a5bf3",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "formTitle": "On boarding",
+        "formDescription": "Entreprise Michelin",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Prénom",
+              "placeholder": "Mon prénom",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Nom",
+              "placeholder": "Mon nom",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "E-mail",
+              "fieldType": "email",
+              "placeholder": "example@example.com"
+            },
+            {
+              "fieldLabel": "Numéro de téléphone",
+              "fieldType": "number",
+              "placeholder": "0666666666"
+            },
+            {
+              "fieldLabel": "Poste",
+              "placeholder": "Chargé de clientèle",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        368,
+        -48
+      ],
+      "id": "c3544bae-4f45-48bd-93f6-526e6b533ec9",
+      "name": "On form submission",
+      "webhookId": "48e05f0a-59e5-4466-97f0-56c3a039d3d9"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d1dd0bef-4ccb-4cba-8753-573b43473454",
+              "leftValue": "={{ $json.Poste }}",
+              "rightValue": "responsable",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        576,
+        -48
+      ],
+      "id": "f736cb93-087a-40c4-9cea-87b71e1be6cc",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a4a9ce34-d244-4bef-9190-38461b224090",
+              "name": "Message",
+              "value": "=Bonjour {{ $json['Prénom'] }} {{ $json.Nom }},\nVous êtes Responsable {{ $json.Poste }}.\nBienvenue à l'entrepirse Michelin.\nVoici votre {{ $json['E-mail'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        784,
+        -144
+      ],
+      "id": "2b34a8f6-7ff2-44e7-adc4-2a6286730065",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        784,
+        48
+      ],
+      "id": "dc4a6bd7-088e-4c25-9e67-8dda94b72403",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "afy1IzeVx4CX2AEX",
+          "mode": "list",
+          "cachedResultName": "Formulaire",
+          "cachedResultUrl": "/projects/9bZVcHnfBVk1Ym72/datatables/afy1IzeVx4CX2AEX"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Prenom",
+              "displayName": "Prenom",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nom",
+              "displayName": "Nom",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Poste",
+              "displayName": "Poste",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        576,
+        -384
+      ],
+      "id": "785df326-cf92-41fc-8231-9eadc2280260",
+      "name": "Insert row"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "5a1bc411-7d35-4a61-a686-abdcd8987287",
+  "meta": {
+    "instanceId": "b840345e7c258ae1df4ea5b84e854a9b2e6a0c04f2327019d7943af7bfbdb387"
+  },
+  "id": "2Rbeh9nwtqFzeGBI",
+  "tags": []
+}

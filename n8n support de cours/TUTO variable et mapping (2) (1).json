@@ -1,0 +1,707 @@
+{
+  "name": "TUTO variable et mapping",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -48
+      ],
+      "id": "0ba75801-9195-4b07-8494-10624109052c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d81165cd-1591-40a6-af23-8d23cd502643",
+              "name": "status",
+              "value": "départ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        -48
+      ],
+      "id": "9e0be3c2-b1cd-4693-b7dd-c86b9d30436d",
+      "name": "Initialiser"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b9d670f8-08f0-4a16-9e60-1926da437178",
+              "name": "status",
+              "value": "en cours",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        448,
+        -176
+      ],
+      "id": "a9f10ef6-4e63-4c3e-ae3a-d86642a522bc",
+      "name": "Modifier"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ffc8cebc-3d05-4e23-b0ee-05e4f665e85e",
+              "name": "message",
+              "value": "=bonjour",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        672,
+        -304
+      ],
+      "id": "38f66da6-bac7-4cfe-b031-fdc3e21d0b58",
+      "name": "Remplacer"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bb4ab164-0e14-49f7-a2b5-63e65cff2463",
+              "name": "message",
+              "value": "bonjour",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        672,
+        -64
+      ],
+      "id": "c16db981-907a-410e-a4e5-345078f2670d",
+      "name": "Ajouter"
+    },
+    {
+      "parameters": {
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        928,
+        -192
+      ],
+      "id": "925e2b17-4346-4f17-8754-a47c4eed5546",
+      "name": "?"
+    },
+    {
+      "parameters": {
+        "content": "## 2 - Le flux de données\n- Se déplacer en suivant les flèches\n- Input vs Output\n- Manipuler la données : Initialiser, Remplacer, Ajouter, Modifier\n- Les branches sont indépendantes\n- Que se passe-t-il si on \"fusionne\" des branches ? 2 items\n",
+        "height": 672,
+        "width": 1360
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -144,
+        -368
+      ],
+      "typeVersion": 1,
+      "id": "453de437-cef0-4b32-804e-63ec57bcd878",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2fad0bc8-2dbb-402a-99f1-ff9cc6dd9722",
+              "name": "status",
+              "value": "=terminé",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        448,
+        112
+      ],
+      "id": "39654565-76ac-4b3d-b7ea-0e3e21dc9978",
+      "name": "Modifier Branche 2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ad541a71-2bb4-4992-8a9d-563cd9a43c5d",
+              "name": "Le vrai nom complet des variables",
+              "value": "={{ $('Bonjour prénom').item.json.bonjour_prenom }}",
+              "type": "string"
+            },
+            {
+              "id": "d0923066-62bb-42fe-9cee-e6dd7115bfd1",
+              "name": "Le nom local des variables",
+              "value": "={{ $input.item.json.bonjour_prenom }}",
+              "type": "string"
+            },
+            {
+              "id": "0d641aff-da63-4016-b7b9-d2508e95ad1d",
+              "name": "Le prénom des variables",
+              "value": "={{ $json.bonjour_prenom }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        720
+      ],
+      "id": "a9421ba3-34a3-4606-a1ee-be679d9244cf",
+      "name": "Le vrai nom des variables"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3e08369a-85cb-453e-bc5b-d242add3a4c8",
+              "name": "bonjour_prenom",
+              "value": "=Bonjour {{ $json.prenom }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        720
+      ],
+      "id": "24ed2822-6e39-426f-9123-78ead1342f43",
+      "name": "Bonjour prénom"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "74aa1333-7e13-46e2-91d2-50675857127b",
+              "name": "prenom",
+              "value": "Michel",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        720
+      ],
+      "id": "f4eb6de8-03b0-4193-b87e-c84ef0a18844",
+      "name": "Prénom"
+    },
+    {
+      "parameters": {
+        "content": "## 3 - Connecter deux blocs\n- Glisser-Déposer\n- Mode fixe vs Mode expression\n- Le vrai nom des variables",
+        "height": 400,
+        "width": 864,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -144,
+        560
+      ],
+      "typeVersion": 1,
+      "id": "54da22d9-58c1-4c78-beac-5efd3fa3dcb5",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "74aa1333-7e13-46e2-91d2-50675857127b",
+              "name": "prenom",
+              "value": "Michel",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        1344
+      ],
+      "id": "7c2a4db1-25ec-41d6-bb15-1e24faf8cf8e",
+      "name": "Prénom1"
+    },
+    {
+      "parameters": {
+        "content": "## 4 - L'ordre des blocs est important\n- C'est pour ça que c'est important de connaître le vrai nom des variables\n- C'est souvent source d'erreur",
+        "height": 400,
+        "width": 864,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -144,
+        1184
+      ],
+      "typeVersion": 1,
+      "id": "7265e14e-b910-4dbc-830a-60e5803d434b",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3e08369a-85cb-453e-bc5b-d242add3a4c8",
+              "name": "salutation",
+              "value": "=Bonjour",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        1344
+      ],
+      "id": "f0fb2bfc-6b51-4098-b461-8fbf1278c29a",
+      "name": "Bonjour"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "02d42883-5a42-48ab-a0d8-99ecf19cca0c",
+              "name": "bonjour prénom",
+              "value": "={{ $json.salutation }} {{ $('Prénom1').item.json.prenom }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        1344
+      ],
+      "id": "69571612-d615-44c8-95e4-9df1f275508c",
+      "name": "Bonjour Prénom"
+    },
+    {
+      "parameters": {
+        "content": "## 5 - On peut manipuler les variables\nn8n repose sur du code (language) Javascript, ce qui nous permet d'utiliser des opérations (fonctions) avancées sur vos variables.\nTout code Javascript fonctionne tant qu'il fait une seul ligne (pas de bloque de code)\n",
+        "height": 400,
+        "width": 864,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -128,
+        1872
+      ],
+      "typeVersion": 1,
+      "id": "68aa728c-2b18-4f54-bbcf-d4032f56b115",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "366c9a12-72c9-4daa-ae62-fd74cf31135d",
+              "name": "nombre",
+              "value": 10,
+              "type": "number"
+            },
+            {
+              "id": "d5b5efb2-be8b-4261-9bfd-3310ff52887c",
+              "name": "Text",
+              "value": "text",
+              "type": "string"
+            },
+            {
+              "id": "a516f235-6d44-4b76-a729-69fe3819cbb3",
+              "name": "Boolean",
+              "value": false,
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        48,
+        2064
+      ],
+      "id": "ce660e6a-67d2-4ed9-b0c7-d519859af2dd",
+      "name": "Initialisation"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "89355516-385e-42ac-a56c-c6d3224ac5d6",
+              "name": "Somme",
+              "value": "={{ $json.nombre + 10 }}",
+              "type": "number"
+            },
+            {
+              "id": "0fc9880b-da39-480e-8300-b2a6d95e6d44",
+              "name": "Multiplier",
+              "value": "={{ $json.nombre * 10 }}",
+              "type": "number"
+            },
+            {
+              "id": "e9978202-0b0b-4b4d-9d6d-92f96a6264f0",
+              "name": "MAJUSCULE",
+              "value": "={{ $json.Text.toUpperCase() }}",
+              "type": "string"
+            },
+            {
+              "id": "0545fcd6-b9a6-4c3f-94c2-c33d6e910a3b",
+              "name": "Inverser",
+              "value": "={{ ! $json.Boolean }}",
+              "type": "boolean"
+            },
+            {
+              "id": "437ca0f0-cf66-4442-838f-588892c400a3",
+              "name": "Complexe",
+              "value": "={{ $if($json.Boolean && $json.nombre>5, $json.nombre*2, $json.Text.length*3) }}",
+              "type": "string"
+            },
+            {
+              "id": "92e25020-b370-4441-9df0-f5cd464888e3",
+              "name": "Mauvaise Opération",
+              "value": "={{ $json.nombre }} + {{ $json.nombre }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        256,
+        2064
+      ],
+      "id": "65df4e97-3990-401f-a4d0-47f6a37da27d",
+      "name": "Opérations"
+    },
+    {
+      "parameters": {
+        "content": "## Pour résumer :\n- Les variables sont la base de la donnée dans n8n\n- Elles peuvent être des nombres, des textes, des booleans (true/false), des arrays (tableaux) ou des Objects (dictionnaires : clé-valeur)\n- Chaque bloc prend des variables en input et en sort d'autres en output\n- On les appelle principalement *$('Source').item.json.nom* ou *$json.nom*\n- On peut effectuer toute sorte d'opérations sur ces variables",
+        "height": 400,
+        "width": 816,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -112,
+        2800
+      ],
+      "typeVersion": 1,
+      "id": "99f70430-ca68-470c-b837-04f5ac8c3af5",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## 1 - Qu'est-ce qu'une variable ?\n- Edit Fields (Set) pour créer ou modifier des variables.\n- Tous les blocs manipulent des variables.\n- Elles peuvent être des nombres, des textes, des booleans (true/false), des arrays (tableaux) ou des Objects (dictionnaires : clé-valeur)\n- Format de données JSON",
+        "height": 704,
+        "width": 464
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -128,
+        -1504
+      ],
+      "typeVersion": 1,
+      "id": "025bcb3b-e430-4ba3-b2c8-df665f1a1135",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "80c0dfa2-247d-4d64-9a5a-24fe8bb840a3",
+              "name": "variable String",
+              "value": "text",
+              "type": "string"
+            },
+            {
+              "id": "4a07dea7-307d-4f42-9c14-f10ae3005b7d",
+              "name": "variable Nombre",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "692f9ab4-6a7b-44a7-bc11-bd018c408891",
+              "name": "variable Boolean",
+              "value": false,
+              "type": "boolean"
+            },
+            {
+              "id": "72fb520b-bba4-46a0-87c3-8367ed9a6228",
+              "name": "variable Array",
+              "value": "[\"Antoine\", \"Denis\", \"Anime\"]",
+              "type": "array"
+            },
+            {
+              "id": "4121c89d-a5de-49c6-8dbf-453510db3a79",
+              "name": "variable Object",
+              "value": "{\"name\": \"Antoine\", \"Age\": 25 }",
+              "type": "object"
+            },
+            {
+              "id": "b85a45a0-61c1-4c7d-90d4-5dfcf53aca40",
+              "name": "variable Array Of Object",
+              "value": "[ {\"name\": \"Antoine\", \"Age\": 25 }, {\"name\": \"Denis\", \"Age\": 20 }, {\"name\": \"Anime\", \"Age\": 18} ]",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        48,
+        -1264
+      ],
+      "id": "0b1e3f30-a89a-456f-be6a-004cba2ae1be",
+      "name": "Edit Fields (Set)"
+    },
+    {
+      "parameters": {
+        "url": "http://example.com",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        48,
+        -1040
+      ],
+      "id": "84474ae1-2238-405a-90d4-8ba25b515045",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {
+    "Prénom": [
+      {
+        "json": {
+          "prenom": "Michel"
+        }
+      }
+    ],
+    "HTTP Request": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      },
+      {
+        "json": {
+          "name": "Second item",
+          "code": 2
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Initialiser",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Initialiser": {
+      "main": [
+        [
+          {
+            "node": "Modifier Branche 2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Modifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Modifier": {
+      "main": [
+        [
+          {
+            "node": "Remplacer",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Ajouter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remplacer": {
+      "main": [
+        [
+          {
+            "node": "?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ajouter": {
+      "main": [
+        [
+          {
+            "node": "?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bonjour prénom": {
+      "main": [
+        [
+          {
+            "node": "Le vrai nom des variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prénom": {
+      "main": [
+        [
+          {
+            "node": "Bonjour prénom",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prénom1": {
+      "main": [
+        [
+          {
+            "node": "Bonjour",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bonjour": {
+      "main": [
+        [
+          {
+            "node": "Bonjour Prénom",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Initialisation": {
+      "main": [
+        [
+          {
+            "node": "Opérations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields (Set)": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4d5371e8-230d-48c2-a908-6f1c9f515b3a",
+  "meta": {
+    "instanceId": "b840345e7c258ae1df4ea5b84e854a9b2e6a0c04f2327019d7943af7bfbdb387"
+  },
+  "id": "jZh7QRN7GZFvMTiX",
+  "tags": []
+}
