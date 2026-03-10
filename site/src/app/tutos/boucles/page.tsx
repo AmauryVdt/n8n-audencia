@@ -62,7 +62,7 @@ export default function BouclesPage() {
         </p>
 
         <Screenshot
-          src="/screenshots/placeholder"
+          src="/screenshots/boucles-workflow.png"
           alt="Workflow complet de la boucle dans n8n : Trigger → Compteur → Wait → Compteur+1 → If → retour au Wait ou fin"
           caption="Une boucle dans n8n : le bloc If renvoie vers Wait pour continuer"
         />
