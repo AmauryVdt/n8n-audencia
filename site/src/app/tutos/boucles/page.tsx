@@ -6,12 +6,50 @@ import Callout from "@/components/Callout";
 import CodeBlock from "@/components/CodeBlock";
 import Screenshot from "@/components/Screenshot";
 import FlowDiagram from "@/components/FlowDiagram";
+import Quiz from "@/components/Quiz";
+
+const bouclesQuiz = [
+  {
+    question: "Quels sont les 3 éléments d'une boucle ?",
+    options: [
+      "Trigger, Set, If",
+      "Compteur, action répétée, condition d'arrêt",
+      "Input, output, variable",
+      "Wait, Filter, Switch",
+    ],
+    correctIndex: 1,
+    explanation: "Une boucle a toujours un compteur (où on en est), une action (ce qu'on répète) et une condition d'arrêt (quand s'arrêter).",
+  },
+  {
+    question: "Pourquoi met-on un bloc Wait dans la boucle ?",
+    options: [
+      "Pour rendre le workflow plus joli",
+      "C'est obligatoire dans n8n",
+      "Pour éviter que la boucle tourne trop vite et bloque l'instance",
+      "Pour attendre la réponse de l'utilisateur",
+    ],
+    correctIndex: 2,
+    explanation: "Sans Wait, la boucle s'exécute instantanément et peut surcharger ou bloquer votre instance n8n.",
+  },
+  {
+    question: "Comment crée-t-on une boucle dans n8n ?",
+    options: [
+      "Avec un bloc Loop dédié",
+      "En connectant la sortie d'un If vers un bloc précédent",
+      "Avec un bloc For Each",
+      "On ne peut pas faire de boucles dans n8n",
+    ],
+    correctIndex: 1,
+    explanation: "n8n n'a pas de bloc boucle dédié. On crée une boucle en reconnectant la sortie « faux » du If vers un bloc précédent (le Wait).",
+  },
+];
 
 const sections = [
   { id: "quest-ce-quune-boucle", title: "1. Qu'est-ce qu'une boucle ?" },
   { id: "construire-une-boucle", title: "2. Construire une boucle" },
   { id: "etape-par-etape", title: "3. Étape par étape" },
   { id: "quand-utiliser", title: "4. Quand utiliser une boucle ?" },
+  { id: "quiz", title: "Quiz" },
   { id: "resume", title: "Résumé" },
 ];
 
@@ -62,7 +100,7 @@ export default function BouclesPage() {
         </p>
 
         <Screenshot
-          src="/screenshots/placeholder"
+          src="/screenshots/boucles-workflow.png"
           alt="Workflow complet de la boucle dans n8n : Trigger → Compteur → Wait → Compteur+1 → If → retour au Wait ou fin"
           caption="Une boucle dans n8n : le bloc If renvoie vers Wait pour continuer"
         />
@@ -141,6 +179,11 @@ export default function BouclesPage() {
             manuelles sont utiles pour des logiques plus complexes.
           </p>
         </Callout>
+      </Section>
+
+      {/* Quiz */}
+      <Section id="quiz" title="Quiz - Testez vos connaissances">
+        <Quiz title="Boucles" questions={bouclesQuiz} />
       </Section>
 
       {/* Résumé */}
