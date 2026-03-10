@@ -6,6 +6,44 @@ import Callout from "@/components/Callout";
 import CodeBlock from "@/components/CodeBlock";
 import Screenshot from "@/components/Screenshot";
 import FlowDiagram from "@/components/FlowDiagram";
+import Quiz from "@/components/Quiz";
+
+const conditionsQuiz = [
+  {
+    question: "Combien de sorties a le bloc If ?",
+    options: ["1", "2", "3", "Autant qu'on veut"],
+    correctIndex: 1,
+    explanation: "Le bloc If a exactement 2 sorties : une pour « vrai » et une pour « faux ».",
+  },
+  {
+    question: "Quelle est la différence entre Filter et If ?",
+    options: [
+      "Filter a 2 sorties, If n'en a qu'une",
+      "Il n'y a aucune différence",
+      "Filter n'a qu'une sortie : il supprime les items qui ne passent pas",
+      "Filter est plus rapide que If",
+    ],
+    correctIndex: 2,
+    explanation: "Filter ne garde que les items qui passent la condition. Les autres sont simplement supprimés, il n'y a pas de sortie « faux ».",
+  },
+  {
+    question: "Quel bloc choisir pour aiguiller les données vers 4 chemins différents ?",
+    options: ["If", "Filter", "Switch", "Edit Fields"],
+    correctIndex: 2,
+    explanation: "Le Switch peut avoir autant de sorties que nécessaire, chacune avec sa propre condition. C'est le seul bloc de condition qui gère plus de 2 chemins.",
+  },
+  {
+    question: "Avec AND, que faut-il pour que la condition soit vraie ?",
+    options: [
+      "Au moins une condition doit être vraie",
+      "Toutes les conditions doivent être vraies",
+      "Aucune condition ne doit être vraie",
+      "La première condition suffit",
+    ],
+    correctIndex: 1,
+    explanation: "AND (ET) nécessite que TOUTES les conditions soient vraies. Pour qu'au moins une suffise, on utilise OR (OU).",
+  },
+];
 
 const sections = [
   { id: "introduction", title: "Introduction" },
@@ -13,6 +51,7 @@ const sections = [
   { id: "le-bloc-filter", title: "2. Le bloc Filter" },
   { id: "le-bloc-switch", title: "3. Le bloc Switch" },
   { id: "if-vs-filter-vs-switch", title: "4. Lequel choisir ?" },
+  { id: "quiz", title: "Quiz" },
   { id: "resume", title: "Résumé" },
 ];
 
@@ -36,7 +75,7 @@ export default function ConditionsPage() {
         </ul>
 
         <Screenshot
-          src="/screenshots/placeholder"
+          src="/screenshots/conditions-overview.png"
           alt="Vue d'ensemble du workflow de conditions avec les blocs If, Filter et Switch en parallèle"
           caption="Les 3 types de blocs de conditions dans n8n"
         />
@@ -70,7 +109,7 @@ Texte == "text"   →  OR  ←   Nombre > 0
         </CodeBlock>
 
         <Screenshot
-          src="/screenshots/placeholder"
+          src="/screenshots/conditions-if.png"
           alt="Configuration du bloc If dans n8n avec conditions texte = 'text' OR nombre > 0"
           caption="Le bloc If avec deux conditions combinées en OR"
         />
@@ -115,7 +154,7 @@ Texte == "text"   →  OR  ←   Nombre > 0
         />
 
         <Screenshot
-          src="/screenshots/placeholder"
+          src="/screenshots/conditions-filter.png"
           alt="Configuration du bloc Filter dans n8n avec condition nombre < 50"
           caption="Le Filter garde uniquement les items qui passent la condition"
         />
@@ -153,7 +192,7 @@ Texte == "text"   →  OR  ←   Nombre > 0
         </CodeBlock>
 
         <Screenshot
-          src="/screenshots/placeholder"
+          src="/screenshots/conditions-switch.png"
           alt="Configuration du bloc Switch dans n8n avec 2 conditions et un fallback"
           caption="Le Switch aiguille les données selon plusieurs conditions"
         />
@@ -217,6 +256,11 @@ Texte == "text"   →  OR  ←   Nombre > 0
             </tbody>
           </table>
         </div>
+      </Section>
+
+      {/* Quiz */}
+      <Section id="quiz" title="Quiz - Testez vos connaissances">
+        <Quiz title="Conditions" questions={conditionsQuiz} />
       </Section>
 
       {/* Résumé */}

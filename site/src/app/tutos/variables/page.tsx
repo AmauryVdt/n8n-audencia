@@ -6,6 +6,50 @@ import Callout from "@/components/Callout";
 import CodeBlock from "@/components/CodeBlock";
 import Screenshot from "@/components/Screenshot";
 import FlowDiagram from "@/components/FlowDiagram";
+import Quiz from "@/components/Quiz";
+
+const variablesQuiz = [
+  {
+    question: "Quel bloc utilise-t-on pour créer ou modifier des variables dans n8n ?",
+    options: ["HTTP Request", "Edit Fields (Set)", "If", "Trigger"],
+    correctIndex: 1,
+    explanation: "Le bloc Edit Fields (Set) est le bloc principal pour créer, modifier ou supprimer des variables.",
+  },
+  {
+    question: "Quel est le type d'une variable qui vaut \"Bonjour\" ?",
+    options: ["Number", "Boolean", "String", "Array"],
+    correctIndex: 2,
+    explanation: "Un texte entre guillemets est toujours de type String (chaîne de caractères).",
+  },
+  {
+    question: "Quelle syntaxe permet d'accéder à une variable du bloc juste avant ?",
+    options: [
+      "{{ $json.maVariable }}",
+      "{{ $('MonBloc').item.json.maVariable }}",
+      "{{ $input.maVariable }}",
+      "{{ maVariable }}",
+    ],
+    correctIndex: 0,
+    explanation: "$json.maVariable accède directement à une variable de l'output du bloc précédent. C'est la syntaxe la plus courante.",
+  },
+  {
+    question: "Que donne {{ $json.nombre }} + {{ $json.nombre }} si nombre = 10 ?",
+    options: ["20", "\"10 + 10\" (du texte)", "100", "Erreur"],
+    correctIndex: 1,
+    explanation: "Les deux expressions sont évaluées séparément puis concaténées comme du texte. Pour calculer, il faut écrire {{ $json.nombre + $json.nombre }}.",
+  },
+  {
+    question: "Que se passe-t-il si on fusionne deux branches indépendantes ?",
+    options: [
+      "Les données se mélangent",
+      "On obtient une erreur",
+      "On obtient 2 items séparés",
+      "La première branche écrase la seconde",
+    ],
+    correctIndex: 2,
+    explanation: "Chaque branche produit son propre item. En fusionnant, on obtient 2 items distincts.",
+  },
+];
 
 const sections = [
   { id: "quest-ce-quune-variable", title: "1. Qu'est-ce qu'une variable ?" },
@@ -14,6 +58,7 @@ const sections = [
   { id: "connecter-deux-blocs", title: "4. Connecter deux blocs" },
   { id: "ordre-des-blocs", title: "5. L'ordre des blocs" },
   { id: "manipuler-les-variables", title: "6. Manipuler les variables" },
+  { id: "quiz", title: "Quiz" },
   { id: "resume", title: "Résumé" },
 ];
 
@@ -34,7 +79,7 @@ export default function VariablesPage() {
           dans n8n.
         </p>
         <Screenshot
-          src="/screenshots/placeholder"
+          src="/screenshots/variables-edit-fields.png"
           alt="Bloc Edit Fields (Set) dans n8n avec plusieurs variables créées"
           caption="Le bloc Edit Fields permet de créer et modifier des variables"
         />
@@ -139,7 +184,7 @@ export default function VariablesPage() {
         </CodeBlock>
 
         <Screenshot
-          src="/screenshots/placeholder"
+          src="/screenshots/variables-types.png"
           alt="Bloc Edit Fields montrant les différents types de variables : String, Number, Boolean, Array, Object"
           caption="Les différents types de variables dans un bloc Edit Fields"
         />
@@ -190,7 +235,7 @@ export default function VariablesPage() {
         </ul>
 
         <Screenshot
-          src="/screenshots/placeholder"
+          src="/screenshots/variables-flux.png"
           alt="Workflow n8n montrant le flux de données : Trigger → Initialiser → Modifier avec les branches"
           caption="Le flux de données suit les flèches entre les blocs"
         />
@@ -214,7 +259,7 @@ export default function VariablesPage() {
         </p>
 
         <Screenshot
-          src="/screenshots/placeholder"
+          src="/screenshots/variables-expression.png"
           alt="Champ en mode Expression dans n8n avec le bouton '=' activé"
           caption="Le bouton '=' active le mode Expression"
         />
@@ -320,7 +365,7 @@ Bonjour {{ $json.prenom }}
         </CodeBlock>
 
         <Screenshot
-          src="/screenshots/placeholder"
+          src="/screenshots/variables-ordre.png"
           alt="Workflow montrant l'ordre Prénom → Bonjour → Bonjour Prénom avec les données disponibles à chaque étape"
           caption="L'ordre des blocs détermine les variables accessibles"
         />
@@ -389,6 +434,11 @@ Bonjour {{ $json.prenom }}
             <code>{`{{ $json.nombre + $json.nombre }}`}</code>
           </p>
         </Callout>
+      </Section>
+
+      {/* Quiz */}
+      <Section id="quiz" title="Quiz - Testez vos connaissances">
+        <Quiz title="Variables & Mapping" questions={variablesQuiz} />
       </Section>
 
       {/* Résumé */}
