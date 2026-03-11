@@ -8,6 +8,8 @@ const navLinks = [
   { href: "/tutos/variables", label: "Variables" },
   { href: "/tutos/conditions", label: "Conditions" },
   { href: "/tutos/boucles", label: "Boucles" },
+  { href: "/tutos/credentials-google", label: "Credentials Google" },
+  { href: "/tutos/credentials-gemini", label: "Credentials Gemini" },
 ];
 
 export default function Navbar() {
