@@ -26,6 +26,22 @@ const tutos = [
     icon: "🔄",
     color: "bg-emerald-50 border-emerald-200 hover:border-emerald-400",
   },
+  {
+    href: "/tutos/credentials-google",
+    title: "Credentials Google",
+    description:
+      "Connecter n8n aux services Google (Drive, Gmail, Calendar, Docs, Sheets) via OAuth.",
+    icon: "🔑",
+    color: "bg-blue-50 border-blue-200 hover:border-blue-400",
+  },
+  {
+    href: "/tutos/credentials-gemini",
+    title: "Credentials Gemini",
+    description:
+      "Obtenir une clé API Gemini pour utiliser l'IA de Google dans vos workflows n8n.",
+    icon: "🤖",
+    color: "bg-amber-50 border-amber-200 hover:border-amber-400",
+  },
 ];
 
 export default function Home() {
