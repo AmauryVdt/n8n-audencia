@@ -12,6 +12,7 @@ const sections = [
   { id: "prerequis", title: "2. Prérequis" },
   { id: "creer-cle-api", title: "3. Créer une clé API Gemini" },
   { id: "configurer-n8n", title: "4. Configurer n8n avec Gemini" },
+  { id: "modeles-disponibles", title: "5. Modèles disponibles" },
   { id: "resume", title: "Résumé" },
 ];
 
@@ -47,6 +48,7 @@ export default function CredentialsGeminiPage() {
         <FlowDiagram
           title="Les étapes pour connecter Gemini à n8n"
           nodes={[
+            { label: "Vérifier son compte", color: "red" },
             { label: "Clé API Gemini", color: "orange" },
             { label: "Credential n8n", color: "blue" },
             { label: "Utiliser l'IA", color: "green" },
@@ -65,11 +67,18 @@ export default function CredentialsGeminiPage() {
       {/* Section 2 */}
       <Section id="prerequis" title="2. Prérequis">
         <p>
-          Avant de commencer, vous devez avoir{" "}
-          <strong>un projet Google Cloud déjà créé</strong>. Si ce n&apos;est
-          pas encore fait, suivez d&apos;abord le tutoriel précédent :
+          Avant de commencer, vous devez remplir{" "}
+          <strong>deux conditions</strong> :
         </p>
 
+        <h3 className="mt-6 text-lg font-semibold">
+          1. Avoir un projet Google Cloud
+        </h3>
+        <p>
+          Vous devez avoir <strong>un projet Google Cloud déjà créé</strong>. Si
+          ce n&apos;est pas encore fait, suivez d&apos;abord le tutoriel
+          précédent :
+        </p>
         <div className="my-4">
           <Link
             href="/tutos/credentials-google"
@@ -80,11 +89,42 @@ export default function CredentialsGeminiPage() {
           </Link>
         </div>
 
+        <h3 className="mt-6 text-lg font-semibold">
+          2. Vérifier votre compte Google
+        </h3>
+        <p>
+          Pour accéder à Google AI Studio et créer une clé API Gemini, votre
+          compte Google doit être <strong>vérifié</strong> (vérification
+          d&apos;âge). Si ce n&apos;est pas fait, Google vous bloquera
+          l&apos;accès.
+        </p>
+        <p>
+          Pour vérifier votre compte :
+        </p>
+        <ol className="ml-4 list-inside list-decimal space-y-2">
+          <li>
+            Allez dans les paramètres de votre compte Google :{" "}
+            <strong>&quot;Gérer votre compte Google&quot;</strong>
+          </li>
+          <li>
+            Cliquez sur <strong>&quot;Informations personnelles&quot;</strong>
+          </li>
+          <li>
+            Cherchez la section <strong>&quot;Anniversaire&quot;</strong>
+          </li>
+          <li>
+            Cliquez sur <strong>&quot;Vérifier votre âge&quot;</strong>
+          </li>
+          <li>
+            Sélectionnez une méthode de vérification et suivez les instructions
+          </li>
+        </ol>
+
         <Callout type="warning">
           <p>
-            Vous avez besoin du <strong>projet Google Cloud</strong> créé dans
-            le tutoriel Credentials Google. Si vous ne l&apos;avez pas encore
-            fait, commencez par là avant de continuer ici.
+            Sans cette vérification, vous ne pourrez{" "}
+            <strong>pas accéder à Google AI Studio</strong> et donc pas créer de
+            clé API Gemini. Faites-le avant de continuer.
           </p>
         </Callout>
       </Section>
@@ -105,7 +145,7 @@ export default function CredentialsGeminiPage() {
           <code>aistudio.google.com/apikey</code>.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-gemini-aistudio.png"
+          src="/screenshots/credentials-gemini-aistudio.png"
           alt="Page d'accueil de Google AI Studio avec la section API Keys"
           caption="La page Google AI Studio pour gérer vos clés API"
         />
@@ -119,7 +159,7 @@ export default function CredentialsGeminiPage() {
           Key&quot;).
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-gemini-create-key.png"
+          src="/screenshots/credentials-gemini-create-key.png"
           alt="Bouton 'Créer une clé API' sur Google AI Studio"
           caption="Cliquez sur 'Créer une clé API'"
         />
@@ -133,7 +173,7 @@ export default function CredentialsGeminiPage() {
           &quot;Import existing project&quot;).
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-gemini-import-project.png"
+          src="/screenshots/credentials-gemini-import-project.png"
           alt="Option 'Importer un projet existant' dans la fenêtre de création"
           caption="Choisissez d'importer un projet existant"
         />
@@ -146,7 +186,7 @@ export default function CredentialsGeminiPage() {
           (par exemple <code>n8n-audencia</code>).
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-gemini-select-project.png"
+          src="/screenshots/credentials-gemini-select-project.png"
           alt="Liste des projets Google Cloud avec 'n8n-audencia' sélectionné"
           caption="Sélectionnez votre projet Google Cloud"
         />
@@ -159,7 +199,7 @@ export default function CredentialsGeminiPage() {
           l&apos;icône de copie ou en la sélectionnant manuellement.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-gemini-copy-key.png"
+          src="/screenshots/credentials-gemini-copy-key.png"
           alt="Clé API générée avec le bouton de copie"
           caption="Copiez votre clé API — vous en aurez besoin dans n8n"
         />
@@ -190,39 +230,35 @@ export default function CredentialsGeminiPage() {
           ou accédez aux paramètres des credentials.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-gemini-n8n-node.png"
+          src="/screenshots/credentials-gemini-n8n-node.png"
           alt="Bloc Google Gemini Chat Model dans n8n"
           caption="Ajoutez un bloc Gemini dans votre workflow"
         />
 
         <h3 className="mt-6 text-lg font-semibold">
-          Étape 2 : Créer un nouveau credential
+          Étape 2 : Coller la clé API
         </h3>
         <p>
           Créez un nouveau credential de type{" "}
-          <strong>&quot;Google Gemini (PaLM) Api&quot;</strong>.
+          <strong>&quot;Google Gemini (PaLM) Api&quot;</strong>, puis collez la
+          clé API que vous avez copiée dans le champ{" "}
+          <strong>&quot;API Key&quot;</strong>.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-gemini-n8n-credential-type.png"
-          alt="Sélection du type de credential 'Google Gemini (PaLM) Api'"
-          caption="Sélectionnez le type 'Google Gemini (PaLM) Api'"
-        />
-
-        <h3 className="mt-6 text-lg font-semibold">
-          Étape 3 : Coller la clé API
-        </h3>
-        <p>
-          Collez la clé API que vous avez copiée à l&apos;étape précédente dans
-          le champ <strong>&quot;API Key&quot;</strong>, puis sauvegardez.
-        </p>
-        <Screenshot
-          src="/screenshots/placeholder-credentials-gemini-n8n-paste-key.png"
+          src="/screenshots/credentials-gemini-n8n-paste-key.png"
           alt="Champ 'API Key' rempli avec la clé API Gemini"
           caption="Collez votre clé API et sauvegardez"
         />
 
+        <h3 className="mt-6 text-lg font-semibold">
+          Étape 3 : Vérifier la connexion
+        </h3>
+        <p>
+          Sauvegardez le credential. Si tout est correct, vous verrez un message
+          de confirmation.
+        </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-gemini-n8n-saved.png"
+          src="/screenshots/credentials-gemini-n8n-saved.png"
           alt="Credential sauvegardé avec succès dans n8n"
           caption="Le credential est prêt — vous pouvez maintenant utiliser Gemini !"
         />
@@ -236,6 +272,75 @@ export default function CredentialsGeminiPage() {
         </Callout>
       </Section>
 
+      {/* Section 5 */}
+      <Section id="modeles-disponibles" title="5. Modèles disponibles">
+        <p>
+          Avec votre clé API gratuite, vous avez accès à plusieurs modèles.
+          Cependant, <strong>tous les modèles ne font pas la même chose</strong>.
+        </p>
+
+        <div className="overflow-x-auto">
+          <table className="w-full rounded-lg border border-border text-sm">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="border-b border-border px-4 py-3 text-left font-semibold">
+                  Modèle
+                </th>
+                <th className="border-b border-border px-4 py-3 text-left font-semibold">
+                  Type
+                </th>
+                <th className="border-b border-border px-4 py-3 text-left font-semibold">
+                  Capacités
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border-b border-border px-4 py-3 font-medium">
+                  <code>gemma</code> (modèles de base)
+                </td>
+                <td className="border-b border-border px-4 py-3">
+                  Texte uniquement
+                </td>
+                <td className="border-b border-border px-4 py-3">
+                  Résumés, rédaction, analyse, questions/réponses
+                </td>
+              </tr>
+              <tr className="bg-gray-50/50">
+                <td className="border-b border-border px-4 py-3 font-medium">
+                  <code>gemini-2.0-flash</code> et autres
+                </td>
+                <td className="border-b border-border px-4 py-3">
+                  Texte + Images
+                </td>
+                <td className="border-b border-border px-4 py-3">
+                  Tout ce que fait Gemma + génération d&apos;images et vidéos
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <Callout type="warning" title="Important pour les étudiants">
+          <p>
+            Avec votre compte gratuit, vous ne pouvez utiliser que les{" "}
+            <strong>modèles de base Gemma</strong> qui gèrent uniquement du{" "}
+            <strong>texte</strong> (pas de génération d&apos;images ni de
+            vidéos). Les autres modèles (comme <code>gemini-2.0-flash</code>)
+            peuvent générer des images mais nécessitent un compte avec
+            facturation activée.
+          </p>
+        </Callout>
+
+        <Callout type="tip">
+          <p>
+            Les modèles Gemma sont largement suffisants pour la plupart des cas
+            d&apos;usage en automatisation : résumer des emails, rédiger du
+            contenu, analyser des documents, etc.
+          </p>
+        </Callout>
+      </Section>
+
       {/* Résumé */}
       <Section id="resume" title="Résumé">
         <div className="rounded-xl border-2 border-primary bg-primary-light p-6">
@@ -243,6 +348,10 @@ export default function CredentialsGeminiPage() {
             Checklist — Tout est bon si vous avez :
           </p>
           <ul className="space-y-2">
+            <li>
+              <strong>Vérifié votre compte Google</strong> (vérification
+              d&apos;âge)
+            </li>
             <li>
               Créé une <strong>clé API Gemini</strong> via Google AI Studio
             </li>
@@ -254,7 +363,8 @@ export default function CredentialsGeminiPage() {
               <strong>&quot;Google Gemini (PaLM) Api&quot;</strong> dans n8n
             </li>
             <li>
-              Prêt à <strong>utiliser l&apos;IA</strong> dans vos workflows !
+              Prêt à <strong>utiliser l&apos;IA</strong> avec les modèles Gemma
+              dans vos workflows !
             </li>
           </ul>
         </div>
