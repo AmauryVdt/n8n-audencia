@@ -98,7 +98,7 @@ export default function CredentialsGooglePage() {
           compte Google si ce n&apos;est pas déjà fait.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-cloud-console.png"
+          src="/screenshots/credentials-google-cloud-console.png"
           alt="Page d'accueil de Google Cloud Console"
           caption="La page d'accueil de Google Cloud Console après connexion"
         />
@@ -113,7 +113,7 @@ export default function CredentialsGooglePage() {
           Project&quot;).
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-new-project.png"
+          src="/screenshots/credentials-google-new-project.png"
           alt="Bouton 'Nouveau projet' dans Google Cloud Console"
           caption="Cliquez sur le sélecteur de projet puis sur 'Nouveau projet'"
         />
@@ -127,7 +127,7 @@ export default function CredentialsGooglePage() {
           <strong>&quot;Créer&quot;</strong>.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-project-name.png"
+          src="/screenshots/credentials-google-project-name.png"
           alt="Formulaire de création de projet avec le nom 'n8n-audencia'"
           caption="Nommez votre projet et cliquez sur 'Créer'"
         />
@@ -160,9 +160,9 @@ export default function CredentialsGooglePage() {
           <strong>&quot;Library&quot;</strong> (Bibliothèque).
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-api-library.png"
-          alt="Menu latéral avec 'APIs & Services' > 'Library'"
-          caption="Accédez à la bibliothèque d'APIs depuis le menu latéral"
+          src="/screenshots/credentials-google-api-library.png"
+          alt="Recherche d'une API dans la bibliothèque Google Cloud"
+          caption="Recherchez l'API souhaitée dans la bibliothèque"
         />
 
         <h3 className="mt-6 text-lg font-semibold">
@@ -193,14 +193,14 @@ export default function CredentialsGooglePage() {
         </ul>
 
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-enable-api.png"
+          src="/screenshots/credentials-google-enable-api.png"
           alt="Page d'une API avec le bouton 'Activer' en bleu"
-          caption="Recherchez l'API, cliquez dessus, puis cliquez sur 'Activer'"
+          caption="Cliquez sur l'API puis sur 'Activer'"
         />
 
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-api-enabled.png"
-          alt="API activée avec un message de confirmation"
+          src="/screenshots/credentials-google-api-enabled.png"
+          alt="API activée avec le tableau de bord affiché"
           caption="L'API est activée quand vous voyez le tableau de bord de l'API"
         />
 
@@ -244,8 +244,8 @@ export default function CredentialsGooglePage() {
           <strong>&quot;Get Started&quot;</strong>.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-oauth-start.png"
-          alt="Page OAuth consent screen avec le bouton 'Get Started'"
+          src="/screenshots/credentials-google-oauth-start.gif"
+          alt="Clic sur 'Get Started' pour configurer l'écran OAuth"
           caption="Cliquez sur 'Get Started' pour commencer la configuration"
         />
 
@@ -269,8 +269,8 @@ export default function CredentialsGooglePage() {
           </li>
         </ul>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-oauth-appname.png"
-          alt="Formulaire avec le nom de l'app et le type External sélectionné"
+          src="/screenshots/credentials-google-oauth-appname.gif"
+          alt="Formulaire OAuth avec le nom de l'app, le type External et l'email"
           caption="Remplissez le nom, sélectionnez 'External' et ajoutez votre email"
         />
 
@@ -290,7 +290,7 @@ export default function CredentialsGooglePage() {
           <strong>&quot;Publish App&quot;</strong> puis confirmez.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-oauth-publish.png"
+          src="/screenshots/credentials-google-oauth-publish.png"
           alt="Bouton 'Publish App' sur la page Audience"
           caption="Cliquez sur 'Publish App' pour rendre l'application accessible"
         />
@@ -327,7 +327,7 @@ export default function CredentialsGooglePage() {
           sur <strong>&quot;Create Client&quot;</strong>.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-create-client.png"
+          src="/screenshots/credentials-google-create-client.png"
           alt="Page Clients avec le bouton 'Create Client'"
           caption="Cliquez sur 'Create Client' pour créer de nouveaux identifiants"
         />
@@ -340,7 +340,7 @@ export default function CredentialsGooglePage() {
           <strong>&quot;Web application&quot;</strong>.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-web-app.png"
+          src="/screenshots/credentials-google-web-app.png"
           alt="Sélection 'Web application' dans le menu déroulant"
           caption="Sélectionnez 'Web application' comme type d'application"
         />
@@ -350,28 +350,54 @@ export default function CredentialsGooglePage() {
         </h3>
         <p>
           Dans la section{" "}
-          <strong>&quot;Authorized redirect URIs&quot;</strong>, ajoutez ces
-          deux adresses <strong>exactement</strong> comme ci-dessous :
+          <strong>&quot;Authorized redirect URIs&quot;</strong>, ajoutez les
+          adresses correspondant à <strong>votre installation n8n</strong>.
         </p>
-        <ul className="ml-4 list-inside list-disc space-y-2">
-          <li>
-            <code>http://localhost:5678</code>
-          </li>
-          <li>
-            <code>http://localhost:5678/rest/oauth2-credential/callback</code>
-          </li>
-        </ul>
+
+        <Callout type="info" title="Si vous utilisez n8n sur Docker (votre PC)">
+          <p>Ajoutez ces deux URIs :</p>
+          <ul className="mt-2 ml-4 list-inside list-disc space-y-1">
+            <li>
+              <code>http://localhost:5678</code>
+            </li>
+            <li>
+              <code>http://localhost:5678/rest/oauth2-credential/callback</code>
+            </li>
+          </ul>
+        </Callout>
+
+        <Callout type="info" title="Si vous utilisez le n8n du prof (en cours)">
+          <p>Ajoutez ces deux URIs :</p>
+          <ul className="mt-2 ml-4 list-inside list-disc space-y-1">
+            <li>
+              <code>https://managed-audencia-n8n-prod.apps.france-nuage.fr</code>
+            </li>
+            <li>
+              <code>https://managed-audencia-n8n-prod.apps.france-nuage.fr/rest/oauth2-credential/callback</code>
+            </li>
+          </ul>
+        </Callout>
+
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-redirect-uris.png"
-          alt="Champs 'Authorized redirect URIs' avec les deux URLs remplies"
-          caption="Ajoutez les deux URIs de redirection exactement comme indiqué"
+          src="/screenshots/credentials-google-redirect-uris.gif"
+          alt="Ajout des URIs de redirection dans le formulaire Google Cloud"
+          caption="Ajoutez les URIs de redirection correspondant à votre installation"
         />
 
         <Callout type="warning">
           <p>
             Les URIs doivent être tapées <strong>exactement</strong> comme
-            indiqué, avec <code>http://</code> (et non <code>https://</code>).
+            indiqué. Pour Docker, utilisez <code>http://</code> (sans &quot;s&quot;).
+            Pour le n8n du prof, utilisez <code>https://</code> (avec &quot;s&quot;).
             Une seule faute de frappe et la connexion échouera.
+          </p>
+        </Callout>
+
+        <Callout type="tip">
+          <p>
+            Vous pouvez ajouter les <strong>4 URIs</strong> (Docker + n8n du
+            prof) en même temps. Comme ça, votre credential fonctionnera
+            partout.
           </p>
         </Callout>
 
@@ -385,7 +411,7 @@ export default function CredentialsGooglePage() {
           <strong>Copiez-les</strong> dans un fichier texte.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-client-id-secret.png"
+          src="/screenshots/credentials-google-client-id-secret.png"
           alt="Fenêtre affichant le Client ID et le Client Secret"
           caption="Copiez le Client ID et le Client Secret dans un endroit sûr"
         />
@@ -416,7 +442,7 @@ export default function CredentialsGooglePage() {
           sur <strong>&quot;Create New Credential&quot;</strong>.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-n8n-credential.png"
+          src="/screenshots/credentials-google-n8n-credential.png"
           alt="Bloc Google Drive dans n8n avec le bouton 'Create New Credential'"
           caption="Créez un nouveau credential depuis n'importe quel bloc Google"
         />
@@ -430,7 +456,7 @@ export default function CredentialsGooglePage() {
           précédente.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-n8n-paste.png"
+          src="/screenshots/credentials-google-n8n-paste.png"
           alt="Formulaire de credential n8n avec les champs Client ID et Client Secret remplis"
           caption="Collez votre Client ID et votre Client Secret"
         />
@@ -443,7 +469,7 @@ export default function CredentialsGooglePage() {
           Cliquez dessus, puis choisissez votre compte Google.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-n8n-signin.png"
+          src="/screenshots/credentials-google-n8n-signin.png"
           alt="Bouton 'Sign in with Google' dans n8n"
           caption="Cliquez sur 'Sign in with Google' pour lancer la connexion"
         />
@@ -459,7 +485,7 @@ export default function CredentialsGooglePage() {
           <strong>&quot;Accéder à n8n (non sécurisé)&quot;</strong>.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-advanced-access.png"
+          src="/screenshots/credentials-google-advanced-access.png"
           alt="Page d'avertissement Google avec 'Paramètres avancés' et 'Accéder à n8n'"
           caption="Cliquez sur 'Paramètres avancés' puis 'Accéder à n8n (non sécurisé)'"
         />
@@ -468,7 +494,7 @@ export default function CredentialsGooglePage() {
           Autorisez toutes les permissions demandées et confirmez.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-credentials-google-permissions.png"
+          src="/screenshots/credentials-google-permissions.png"
           alt="Page de permissions Google avec les autorisations demandées"
           caption="Autorisez toutes les permissions pour que n8n fonctionne correctement"
         />
