@@ -102,6 +102,11 @@ export default function DockerPage() {
             </ul>
           </li>
         </ol>
+        <Screenshot
+          src="/screenshots/docker-mac-puce.png"
+          alt="Fenêtre 'À propos de ce Mac' montrant le type de processeur"
+          caption="Vérifiez si votre Mac a une puce Apple Silicon ou Intel"
+        />
 
         <h3 className="mt-6 text-lg font-semibold">
           Étape 2 : Télécharger Docker Desktop
@@ -129,6 +134,11 @@ export default function DockerPage() {
             <strong>&quot;Mac with Intel chip&quot;</strong> si vous avez Intel
           </li>
         </ul>
+        <Screenshot
+          src="/screenshots/docker-mac-download.png"
+          alt="Page de téléchargement Docker Desktop avec les options Mac"
+          caption="Choisissez la version adaptée à votre Mac"
+        />
 
         <h3 className="mt-6 text-lg font-semibold">
           Étape 3 : Installer Docker Desktop
@@ -152,6 +162,11 @@ export default function DockerPage() {
             barre de menu en haut)
           </li>
         </ol>
+        <Screenshot
+          src="/screenshots/docker-mac-install.png"
+          alt="Installation de Docker Desktop sur Mac - glisser dans Applications"
+          caption="Glissez Docker dans le dossier Applications"
+        />
 
         <Callout type="tip">
           <p>
