@@ -27,7 +27,10 @@ const navGroups: NavGroup[] = [
   },
   {
     label: "Docker",
-    links: [{ href: "/tutos/docker", label: "Installer Docker Desktop" }],
+    links: [
+      { href: "/tutos/docker", label: "Installer Docker Desktop" },
+      { href: "/tutos/docker-n8n", label: "Lancer n8n sur Docker" },
+    ],
   },
 ];
 
