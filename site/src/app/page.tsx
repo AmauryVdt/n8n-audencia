@@ -63,6 +63,14 @@ const categories = [
         icon: "🐳",
         color: "bg-cyan-50 border-cyan-200 hover:border-cyan-400",
       },
+      {
+        href: "/tutos/docker-n8n",
+        title: "Lancer n8n sur Docker",
+        description:
+          "Récupérer l'image n8n, configurer et lancer un conteneur pour utiliser n8n en local.",
+        icon: "🚀",
+        color: "bg-teal-50 border-teal-200 hover:border-teal-400",
+      },
     ],
   },
 ];

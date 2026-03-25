@@ -102,18 +102,20 @@ export default function DockerPage() {
             </ul>
           </li>
         </ol>
-        <Screenshot
-          src="/screenshots/placeholder-docker-mac-about.png"
-          alt="Fenêtre 'À propos de ce Mac' montrant le type de processeur"
-          caption="Vérifiez si votre Mac a une puce Apple Silicon ou Intel"
-        />
 
         <h3 className="mt-6 text-lg font-semibold">
           Étape 2 : Télécharger Docker Desktop
         </h3>
         <p>
           Allez sur le site officiel de Docker :{" "}
-          <code>docker.com/products/docker-desktop</code>
+          <a
+            href="https://www.docker.com/products/docker-desktop/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline hover:text-primary/80"
+          >
+            docker.com/products/docker-desktop
+          </a>
         </p>
         <p>
           Cliquez sur le bouton de téléchargement correspondant à votre Mac :
@@ -127,11 +129,6 @@ export default function DockerPage() {
             <strong>&quot;Mac with Intel chip&quot;</strong> si vous avez Intel
           </li>
         </ul>
-        <Screenshot
-          src="/screenshots/placeholder-docker-mac-download.png"
-          alt="Page de téléchargement Docker Desktop avec les options Mac"
-          caption="Choisissez la version adaptée à votre Mac"
-        />
 
         <h3 className="mt-6 text-lg font-semibold">
           Étape 3 : Installer Docker Desktop
@@ -155,11 +152,6 @@ export default function DockerPage() {
             barre de menu en haut)
           </li>
         </ol>
-        <Screenshot
-          src="/screenshots/placeholder-docker-mac-install.png"
-          alt="Installation de Docker Desktop sur Mac - glisser dans Applications"
-          caption="Glissez Docker dans le dossier Applications"
-        />
 
         <Callout type="tip">
           <p>
@@ -228,7 +220,7 @@ export default function DockerPage() {
           c&apos;est demandé.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-docker-windows-wsl.png"
+          src="/screenshots/docker-windows-wsl-install.png"
           alt="PowerShell exécutant la commande 'wsl --install'"
           caption="Exécutez 'wsl --install' dans PowerShell en administrateur"
         />
@@ -267,27 +259,38 @@ export default function DockerPage() {
           <strong>Ubuntu</strong>) avec la <strong>VERSION 2</strong>. Si
           c&apos;est le cas, WSL est prêt.
         </p>
-        <Screenshot
-          src="/screenshots/placeholder-docker-windows-wsl-check.png"
-          alt="PowerShell affichant les distributions WSL installées"
-          caption="Vérifiez que WSL 2 est bien installé avec une distribution Linux"
-        />
 
         <h3 className="mt-6 text-lg font-semibold">
           Étape 3 : Télécharger Docker Desktop
         </h3>
         <p>
           Allez sur le site officiel :{" "}
-          <code>docker.com/products/docker-desktop</code>
+          <a
+            href="https://www.docker.com/products/docker-desktop/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary underline hover:text-primary/80"
+          >
+            docker.com/products/docker-desktop
+          </a>
         </p>
         <p>
           Cliquez sur <strong>&quot;Download for Windows&quot;</strong>.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-docker-windows-download.png"
+          src="/screenshots/docker-windows-download.png"
           alt="Page de téléchargement Docker Desktop pour Windows"
           caption="Téléchargez Docker Desktop pour Windows"
         />
+
+        <Callout type="info">
+          <p>
+            Choisissez la version <strong>AMD64</strong> (c&apos;est la version
+            standard qui correspond à la grande majorité des PC Windows). Sélectionnez
+            la version ARM64 uniquement si votre PC utilise une puce Snapdragon
+            ou un autre processeur ARM.
+          </p>
+        </Callout>
 
         <h3 className="mt-6 text-lg font-semibold">
           Étape 4 : Installer Docker Desktop
@@ -311,7 +314,7 @@ export default function DockerPage() {
           </li>
         </ol>
         <Screenshot
-          src="/screenshots/placeholder-docker-windows-install.png"
+          src="/screenshots/docker-windows-use-wsl2.png"
           alt="Installation de Docker Desktop sur Windows avec l'option WSL 2 cochée"
           caption="Gardez bien l'option 'Use WSL 2' cochée"
         />
@@ -330,9 +333,17 @@ export default function DockerPage() {
         </h3>
         <p>
           Après le redémarrage, Docker Desktop devrait se lancer
-          automatiquement. Si ce n&apos;est pas le cas, ouvrez-le depuis le
-          Menu Démarrer.
+          automatiquement. Si ce n&apos;est pas le cas, cherchez l&apos;icône
+          Docker dans les <strong>icônes cachées</strong> de la barre des tâches
+          (petite flèche en bas à droite de votre écran) et cliquez dessus pour
+          ouvrir Docker Desktop.
         </p>
+        <Screenshot
+          src="/screenshots/docker-windows-open-hidden-icon.png"
+          alt="Ouvrir Docker Desktop depuis les icônes cachées de la barre des tâches Windows"
+          caption="Cliquez sur l'icône Docker dans les icônes cachées pour ouvrir le tableau de bord"
+        />
+
         <ol className="ml-4 list-inside list-decimal space-y-2">
           <li>Acceptez les conditions d&apos;utilisation</li>
           <li>
@@ -340,16 +351,22 @@ export default function DockerPage() {
           </li>
           <li>
             Vous pouvez <strong>ignorer</strong> la création de compte Docker
-            Hub (cliquez sur &quot;Skip&quot; ou &quot;Continue without signing
-            in&quot;)
-          </li>
-          <li>
-            Attendez que Docker affiche{" "}
-            <strong>&quot;Docker Desktop is running&quot;</strong>
+            Hub — cliquez sur <strong>&quot;Skip&quot;</strong> ou{" "}
+            <strong>&quot;Continue without signing in&quot;</strong>
           </li>
         </ol>
         <Screenshot
-          src="/screenshots/placeholder-docker-windows-running.png"
+          src="/screenshots/docker-windows-skip-docker-hub.png"
+          alt="Écran de connexion Docker Hub avec le bouton Skip"
+          caption="Cliquez sur 'Skip' pour ignorer la création de compte Docker Hub"
+        />
+
+        <p className="mt-4">
+          Attendez que Docker affiche le tableau de bord. Quand vous le voyez,
+          Docker est prêt !
+        </p>
+        <Screenshot
+          src="/screenshots/docker-windows-dashboard.png"
           alt="Docker Desktop lancé et prêt sur Windows"
           caption="Docker Desktop est prêt quand vous voyez ce tableau de bord"
         />
@@ -357,8 +374,8 @@ export default function DockerPage() {
         <Callout type="tip">
           <p>
             Vous n&apos;avez <strong>pas besoin</strong> de créer un compte
-            Docker Hub. Cliquez sur &quot;Skip&quot; ou fermez simplement cette
-            étape.
+            Docker Hub. Cliquez simplement sur &quot;Skip&quot; pour passer
+            cette étape.
           </p>
         </Callout>
       </Section>
@@ -409,7 +426,7 @@ export default function DockerPage() {
           Docker fonctionne parfaitement.
         </p>
         <Screenshot
-          src="/screenshots/placeholder-docker-hello-world.png"
+          src="/screenshots/docker-hello-world.png"
           alt="Terminal affichant 'Hello from Docker!' après la commande docker run hello-world"
           caption="Si vous voyez ce message, Docker est prêt !"
         />
@@ -462,7 +479,14 @@ export default function DockerPage() {
               Exécuté <code>docker run hello-world</code> avec succès
             </li>
             <li>
-              Prêt à <strong>installer n8n</strong> avec Docker !
+              Prêt à{" "}
+              <a
+                href="/tutos/docker-n8n"
+                className="text-primary underline hover:text-primary/80"
+              >
+                installer n8n avec Docker
+              </a>{" "}
+              !
             </li>
           </ul>
         </div>
